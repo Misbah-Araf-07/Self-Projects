@@ -16,24 +16,32 @@ typedef struct
 
 
 int main()
-{
+{   char Password[25] = {};
+    int day, time;
+    char in ='1', in_2 ;
+
+
+
+
+
+
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD dwMode = 0;
 
     GetConsoleMode(hOut, &dwMode);
     SetConsoleMode(hOut, dwMode | 0x0004);
 
-    char Password[25] = {};
-    int day, time;
-    char in ='1' , in_2 ;
+
 
 
     printf("\tEnter Password: \t\033[2;32m");
     scanf("%s", Password);
     while (strcmp(Password, "itsallen") != 0)
     {
+
         printf("\033[0m\t\033[1;31mWrong Password!\033[0m Try again: \t\033[2;32m");
         scanf("%s", Password);
+        printf("\twho is it?\n");
     }
     system("cls");
     printf("\033[0mAccess Granted.\n\n");
@@ -97,7 +105,7 @@ int main()
         .id = "2025-2-60-396",
         .number = "X",
         .Routine =
-        {
+        {   [2][0] = 0,
             [3][1] = 1, [3][6] = 6, //Mon
             [4][4] = 4, [4][6] = 6, //Tues
             [5][1] = 1, [5][2] = 2, // Wed
@@ -109,8 +117,8 @@ int main()
     infotable Nirjaraplan =
     {
         .name =  "Nirjara Reza",
-        .id = "2025-2- ",
-        .number = "X",
+        .id = "2025-2-60-034",
+        .number = "01741490338",
         .Routine =
         {
             [2][1] = 1,
@@ -138,22 +146,110 @@ int main()
 
     };
 
-        printf("Please Select a Mode:\n");
+//Prapty Data Input
+    infotable Praptyplan =
+    {
+        .name =  "Fatematuz Johura Prapty",
+        .id = "2025-2-60-180",
+        .number = "01798816483",
+        .Routine =
+        {
+            [2][1] = 1, //Sun
+            [3][2] = 2, [3][4] = 4, //Mon
+            [4][4] = 4, //Tues
+            [5][2] = 2,  // Wed
+            [6][4] = 4  //Thur
+        }
 
- while (in !=0 )
+    };
+
+//Nitta Data Input
+    infotable Nittaplan =
+    {
+        .name =  "Nittanandha Chakraborty",
+        .id = "2025-2-60-X",
+        .number = "01977795650",
+        .Routine =
+        {
+            [2][4] = 4,[2][6] = 6, //Sun
+            [3][1] = 1, //Mon
+            [4][4] = 4, //Tues
+            [5][1] = 1, [5][2] = 2,  // Wed
+            [6][4] = 4,[6][5] = 5  //Thur
+        }
+
+    };
+
+//Ridita Data Input
+    infotable Riditaplan =
+    {
+        .name =  "Raiyana Ridita",
+        .id = "X",
+        .number = "01521740460",
+        .Routine =
+        {
+            [2][2] = 2, //Sun
+            [3][1] = 1, //Mon
+            [4][2] = 2, //Tues
+            [5][1] = 1,  // Wed
+            [6][0] = 0
+        }
+
+    };
+//Hridima Data Input
+    infotable Hridimaplan =
+    {
+        .name =  "Zarin Nudar Hridima",
+        .id = "2025-2-60-035",
+        .number = "01521740460",
+        .Routine =
+        {
+            [2][4] = 4, //Sun
+            [3][4] = 4,[3][6] = 6, //Mon
+            [4][4] = 4,[4][5] = 5, //Tues
+            [5][6] = 6,  // Wed
+            [6][6] = 6,  // Thu
+
+        }
+
+    };
+
+//Momo Data Input
+    infotable Momoplan =
+    {
+        .name =  "Momo Rani",
+        .id = "2025-2-80-X",
+        .number = "01923973797",
+        .Routine =
+        {
+            [2][4] = 4,[2][5] = 5,  //Sun
+            [3][2] = 2, //Mon
+            [4][0] = 0,
+            [5][2] = 2,  // Wed
+            [6][4] = 4,[6][5] = 5,[6][5] = 5,  // Thur
+
+        }
+
+    };
+
+//////////////////////////////////////////                                            MAIN CODE                          /////////////////////////////////////////
+
+
+    printf("Please Select a Mode:\n");
+
+    while (in !=0 )
     {
 
-        printf("\t A-> Find Friends on day\n");
+        printf("\n\n\t A-> Find Friends on day\n");
         printf("\t B-> See Friends' Routine\n");
         printf("\t C-> Check your Routine\n");
-        printf("\t    Press 0 to Exit\n\n");
+        printf("\t    Press 0 to Exit\n\n\t\033[1;31m");
         scanf(" %c",&in);
-
+        printf("\033[0m");
 
         if (in=='0') break;
 
-        else if (in=='A' || in=='a')
-        {
+        else if (in=='A' || in=='a')                                                                                                                                                        {
             char input[10] = {} ;
             printf("\t\033[1;32mWhat Day is it ?  :\033[0m\t");
             scanf("%s",&input);
@@ -165,83 +261,44 @@ int main()
             else if  (strcmp(input, "Wed")==0||strcmp(input, "WEDNESDAY")==0||strcmp(input, "W")==0||strcmp(input, "wednesday")==0 ||strcmp(input, "Wednesday")==0)day=5;
             else if  (strcmp(input, "Thu")==0||strcmp(input, "THURSDAY")==0||strcmp(input, "R")==0||strcmp(input, "thursday")==0||strcmp(input, "Thursday")==0 )day=6;
             else if  (strcmp(input, "Fri")==0||strcmp(input, "FRIDAY")==0||strcmp(input, "F")==0||strcmp(input, "friday")==0 ||strcmp(input, "Friday")==0)day=7;
+            else break ;
+
             if (day == 0)
             {
-            printf("Invalid Day!\n");
-            continue;
+                printf("Invalid Day!\n");
+                continue;
             }
 
             printf("\n");
-//ianur
 
-            if(Ianurplan.Routine[day]!= 0)
+            infotable* friends[] = {&Ianurplan, &Apurboplan, &Hridiplan, &Nirjaraplan, &Bornaplan, &Praptyplan, &Hridimaplan, &Riditaplan, &Momoplan, &Nittaplan};
+            char* names[] = {"Ianur", "Apurbo", "Hridi", "Nirjara", "Borna", "Prapty", "Hridima", "Tonmoy", "Ridita", "Momo", "Nitta" };
+
+            for(int i=0; i<10; i++)
             {
-                printf("\tIanur: ");
-                for(time=1; time<8; time++)
+                int hasClass = 0;
+                for(time=1; time<8; time++) if(friends[i]->Routine[day][time] != 0) hasClass = 1;
+                printf("\n\n");
+                if(hasClass)
                 {
-                    if (Ianurplan.Routine[day][time] != 0) printf("\t\t \033[1;36m->\033[0m%s\n",TIME_SLOTS[time]);
+                    printf("\t%s: ", names[i]);
+                    for(time=1; time<8; time++)
+                    {
+                        if(friends[i]->Routine[day][time] != 0) printf("\n\t\t \033[1;36m->\033[0m %s ", TIME_SLOTS[time]);
+
+                    }
+
+                    printf("\n");
                 }
+
             }
-
-
-
-////Nirjara
-//
-        if(Nirjaraplan.Routine[day]!= 0)
-        {   printf("\n");
-            printf("\tNirjara: ");
-            for(time=1; time<8; time++)
-            {
-                if (Nirjaraplan.Routine[day][time] != 0) printf("\t \033[1;36m->\033[0m%s\n",TIME_SLOTS[time]);
-            }
-        }
-
-
-//Hridi
-
-            if(Hridiplan.Routine[day]!= 0)
-            {
-                printf("\n");
-                printf("\tHridi: ");
-                for(time=1; time<8; time++)
-                {
-                    if (Hridiplan.Routine[day][time] != 0) printf("\033[1;36m->\033[0m%s\n\t\t",TIME_SLOTS[time]);
-                }
-            }
-
-
-
-//Apurbo
-
-            if(Apurboplan.Routine[day]!= 0)
-            {
-                printf("\n");
-                printf("\tApurbo: ");
-                for(time=1; time<8; time++)
-                {
-                    if (Apurboplan.Routine[day][time] != 0) printf("\t\t \033[1;36m->\033[0m%s\n",TIME_SLOTS[time]);
-                }
-            }
-
-
-
-
-
-
-        }
-
-
-
-
-
-
-
-
+            printf("\n\n\n");
+                                                                                                                                                                                                        }
 
         else if (in=='B' || in=='b')
-        {
+                                                                                                                                                                                                        {
             char subj[20];
-            printf("\n\tName of The Subject  ?\t:  ");
+            printf("\n\t\033[1;32mName of The Subject  ?\t:  \033[0m");
             scanf("%s",&subj);
             printf("\n\n\n");
 
@@ -277,7 +334,6 @@ int main()
                     printf("\n");
                 }
             }
-
 
 //IANUR
 
@@ -317,8 +373,6 @@ int main()
                 printf("R: 1.30-3.30 PM \033[0m\n\t");
             }
 
-
-
 //Apurbo
             if (strcmp(subj,"APURBO")==0 || strcmp(subj,"apurbo")==0 || strcmp(subj,"Apurbo")==0)
             {
@@ -355,8 +409,6 @@ int main()
                 printf("W: \033[2;35m--\033[1;33m \n\t");
                 printf("R: 1.30-3.30 PM \033[0m\n\t");
             }
-
-
 
 //Nirjara Chutiya
             if (strcmp(subj,"Nirjara")==0 || strcmp(subj,"NIRJARA")==0 || strcmp(subj,"nirjara")==0 || strcmp(subj,"LadyBro")==0 )
@@ -395,6 +447,42 @@ int main()
                 printf("R: 1.30-3.30 PM \033[0m\n\t");
             }
 
+//Momo
+            if (strcmp(subj,"Momo")==0 || strcmp(subj,"MOMO")==0 || strcmp(subj,"momo")==0 )
+            {
+
+
+                printf("\t\t\t\033[2;34m\\______________________________________________/\033[0m\n");
+                printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                printf("\t\t\t\tName: %s\n",Momoplan.name);
+                printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                printf("\t\t\t\tID: %s\n",Momoplan.id);
+                printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                printf("\t\t\t\tNumber: %s\n",Momoplan.number);
+                printf("\t\t\t\033[2;34m|                                              |\033[0m\n\n");
+                printf("\t\t\t \033[2;34m\\      ______       ________     ______      /\033[0m\n");
+                printf("\n\n\n");
+
+
+                for (day=1 ; day<8 ; )
+                {
+                    for(time=1; time<8 ; time++)
+                    {
+                        if (Momoplan.Routine[day][time] == 0) printf("\033[3;32m \033[0m   ");
+                        else  printf("\n\t%s \033[2;31m|\033[0m %s ", DAY_SLOTS[day], TIME_SLOTS[time]);
+                    }
+                    day++;
+                    printf("\n");
+                }
+
+                printf("\n\t\033[1;36mMy Routine\033[0m :\n\t");
+                printf("\033[1;33mA: 8.00 AM-10.00 AM\n\t");
+                printf("S: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
+                printf("M: \033[2;35m--\033[1;33m \n\t");
+                printf("T: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
+                printf("W: \033[2;35m--\033[1;33m \n\t");
+                printf("R: 1.30-3.30 PM \033[0m\n\t");
+            }
 
 
 //Borna
@@ -425,6 +513,8 @@ int main()
                     printf("\n");
                 }
 
+
+
                 printf("\n\t\033[1;36mMy Routine\033[0m :\n\t");
                 printf("\033[1;33mA: 8.00 AM-10.00 AM\n\t");
                 printf("S: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
@@ -432,54 +522,209 @@ int main()
                 printf("T: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
                 printf("W: \033[2;35m--\033[1;33m \n\t");
                 printf("R: 1.30-3.30 PM \033[0m\n\t");
+
             }
+//Prapty
+                if (strcmp(subj,"Prapty")==0 || strcmp(subj,"prapty")==0 || strcmp(subj,"PRAPTY")==0)
+                {
+
+
+                    printf("\t\t\t\033[2;34m\\______________________________________________/\033[0m\n");
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                    printf("\t\t\t\tName: %s\n",Praptyplan.name);
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                    printf("\t\t\t\tID: %s\n",Praptyplan.id);
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                    printf("\t\t\t\tNumber: %s\n",Praptyplan.number);
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n\n");
+                    printf("\t\t\t \033[2;34m\\      ______       ________     ______      /\033[0m\n");
+                    printf("\n\n\n");
+
+
+                    for (day=1 ; day<8 ; )
+                    {
+                        for(time=1; time<8 ; time++)
+                        {
+                            if (Praptyplan.Routine[day][time] == 0) printf("\033[3;32m \033[0m   ");
+                            else  printf("\n\t%s \033[2;31m|\033[0m %s ", DAY_SLOTS[day], TIME_SLOTS[time]);
+                        }
+                        day++;
+                        printf("\n");
+                    }
+
+
+
+                    printf("\n\t\033[1;36mMy Routine\033[0m :\n\t");
+                    printf("\033[1;33mA: 8.00 AM-10.00 AM\n\t");
+                    printf("S: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
+                    printf("M: \033[2;35m--\033[1;33m \n\t");
+                    printf("T: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
+                    printf("W: \033[2;35m--\033[1;33m \n\t");
+                    printf("R: 1.30-3.30 PM \033[0m\n\t");
+
+                }
+
+//Nitta
+                if (strcmp(subj,"Nitta")==0 || strcmp(subj,"nitta")==0 || strcmp(subj,"NITTA")==0 || strcmp(subj,"Chakru")==0|| strcmp(subj,"chakru")==0 || strcmp(subj,"CHAKRU")==0)
+                {
+
+
+                    printf("\t\t\t\033[2;34m\\______________________________________________/\033[0m\n");
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                    printf("\t\t\t\tName: %s\n",Nittaplan.name);
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                    printf("\t\t\t\tID: %s\n",Nittaplan.id);
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                    printf("\t\t\t\tNumber: %s\n",Nittaplan.number);
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n\n");
+                    printf("\t\t\t \033[2;34m\\      ______       ________     ______      /\033[0m\n");
+                    printf("\n\n\n");
+
+
+                    for (day=1 ; day<8 ; )
+                    {
+                        for(time=1; time<8 ; time++)
+                        {
+                            if (Nittaplan.Routine[day][time] == 0) printf("\033[3;32m \033[0m   ");
+                            else  printf("\n\t%s \033[2;31m|\033[0m %s ", DAY_SLOTS[day], TIME_SLOTS[time]);
+                        }
+                        day++;
+                        printf("\n");
+                    }
+
+
+
+                    printf("\n\t\033[1;36mMy Routine\033[0m :\n\t");
+                    printf("\033[1;33mA: 8.00 AM-10.00 AM\n\t");
+                    printf("S: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
+                    printf("M: \033[2;35m--\033[1;33m \n\t");
+                    printf("T: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
+                    printf("W: \033[2;35m--\033[1;33m \n\t");
+                    printf("R: 1.30-3.30 PM \033[0m\n\t");
+
+                }
 
 
 
 //Rumman Shajarat Hridi
-            if (strcmp(subj,"Hridi")==0 || strcmp(subj,"HRIDI")==0 || strcmp(subj,"hridi")==0)
-            {
-
-
-                printf("\t\t\t\033[2;34m\\______________________________________________/\033[0m\n");
-                printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
-                printf("\t\t\t\tName: %s\n",Hridiplan.name);
-                printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
-                printf("\t\t\t\tID: %s\n",Hridiplan.id);
-                printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
-                printf("\t\t\t\tNumber: %s\n",Hridiplan.number);
-                printf("\t\t\t\033[2;34m|                                              |\033[0m\n\n");
-                printf("\t\t\t \033[2;34m\\      ______       ________     ______      /\033[0m\n");
-                printf("\n\n\n");
-
-
-                for (day=1 ; day<8 ; )
+                if (strcmp(subj,"Hridi")==0 || strcmp(subj,"HRIDI")==0 || strcmp(subj,"hridi")==0)
                 {
-                    for(time=1; time<8 ; time++)
+
+
+                    printf("\t\t\t\033[2;34m\\______________________________________________/\033[0m\n");
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                    printf("\t\t\t\tName: %s\n",Hridiplan.name);
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                    printf("\t\t\t\tID: %s\n",Hridiplan.id);
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                    printf("\t\t\t\tNumber: %s\n",Hridiplan.number);
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n\n");
+                    printf("\t\t\t \033[2;34m\\      ______       ________     ______      /\033[0m\n");
+                    printf("\n\n\n");
+
+
+                    for (day=1 ; day<8 ; )
                     {
-                        if (Hridiplan.Routine[day][time] == 0) printf("\033[3;32m \033[0m   ");
-                        else  printf("\n\t%s \033[2;31m|\033[0m %s ", DAY_SLOTS[day], TIME_SLOTS[time]);
+                        for(time=1; time<8 ; time++)
+                        {
+                            if (Hridiplan.Routine[day][time] == 0) printf("\033[3;32m \033[0m   ");
+                            else  printf("\n\t%s \033[2;31m|\033[0m %s ", DAY_SLOTS[day], TIME_SLOTS[time]);
+                        }
+                        day++;
+                        printf("\n");
                     }
-                    day++;
-                    printf("\n");
+
+                    printf("\n\t\033[1;36mMy Routine\033[0m :\n\t");
+                    printf("\033[1;33mA: 8.00 AM-10.00 AM\n\t");
+                    printf("S: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
+                    printf("M: \033[2;35m--\033[1;33m \n\t");
+                    printf("T: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
+                    printf("W: \033[2;35m--\033[1;33m \n\t");
+                    printf("R: 1.30-3.30 PM \033[0m\n\t");
                 }
 
-                printf("\n\t\033[1;36mMy Routine\033[0m :\n\t");
-                printf("\033[1;33mA: 8.00 AM-10.00 AM\n\t");
-                printf("S: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
-                printf("M: \033[2;35m--\033[1;33m \n\t");
-                printf("T: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
-                printf("W: \033[2;35m--\033[1;33m \n\t");
-                printf("R: 1.30-3.30 PM \033[0m\n\t");
-            }
+//Hridima
+                if (strcmp(subj,"Hridima")==0 || strcmp(subj,"HRIDIMA")==0 || strcmp(subj,"hridima")==0 || strcmp(subj,"hridu")==0 || strcmp(subj,"Hridu")==0)
+                {
+
+
+                    printf("\t\t\t\033[2;34m\\______________________________________________/\033[0m\n");
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                    printf("\t\t\t\tName: %s\n",Hridimaplan.name);
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                    printf("\t\t\t\tID: %s\n",Hridimaplan.id);
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                    printf("\t\t\t\tNumber: %s\n",Hridimaplan.number);
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n\n");
+                    printf("\t\t\t \033[2;34m\\      ______       ________     ______      /\033[0m\n");
+                    printf("\n\n\n");
+
+
+                    for (day=1 ; day<8 ; )
+                    {
+                        for(time=1; time<8 ; time++)
+                        {
+                            if (Hridimaplan.Routine[day][time] == 0) printf("\033[3;32m \033[0m   ");
+                            else  printf("\n\t%s \033[2;31m|\033[0m %s ", DAY_SLOTS[day], TIME_SLOTS[time]);
+                        }
+                        day++;
+                        printf("\n");
+                    }
+
+                    printf("\n\t\033[1;36mMy Routine\033[0m :\n\t");
+                    printf("\033[1;33mA: 8.00 AM-10.00 AM\n\t");
+                    printf("S: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
+                    printf("M: \033[2;35m--\033[1;33m \n\t");
+                    printf("T: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
+                    printf("W: \033[2;35m--\033[1;33m \n\t");
+                    printf("R: 1.30-3.30 PM \033[0m\n\t");
+                }
+
+//Raiyana Ridita
+                if (strcmp(subj,"Ridita")==0 || strcmp(subj,"RIDITA")==0 || strcmp(subj,"ridita")==0)
+                {
+
+
+                    printf("\t\t\t\033[2;34m\\______________________________________________/\033[0m\n");
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                    printf("\t\t\t\tName: %s\n",Riditaplan.name);
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                    printf("\t\t\t\tID: %s\n",Riditaplan.id);
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                    printf("\t\t\t\tNumber: %s\n",Riditaplan.number);
+                    printf("\t\t\t\033[2;34m|                                              |\033[0m\n\n");
+                    printf("\t\t\t \033[2;34m\\      ______       ________     ______      /\033[0m\n");
+                    printf("\n\n\n");
+
+
+                    for (day=1 ; day<8 ; )
+                    {
+                        for(time=1; time<8 ; time++)
+                        {
+                            if (Riditaplan.Routine[day][time] == 0) printf("\033[3;32m \033[0m   ");
+                            else  printf("\n\t%s \033[2;31m|\033[0m %s ", DAY_SLOTS[day], TIME_SLOTS[time]);
+                        }
+                        day++;
+                        printf("\n");
+                    }
+
+                    printf("\n\t\033[1;36mMy Routine\033[0m :\n\t");
+                    printf("\033[1;33mA: 8.00 AM-10.00 AM\n\t");
+                    printf("S: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
+                    printf("M: \033[2;35m--\033[1;33m \n\t");
+                    printf("T: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
+                    printf("W: \033[2;35m--\033[1;33m \n\t");
+                    printf("R: 1.30-3.30 PM \033[0m\n\t");
+                }
 
 
 
 
-        }
+                                                                                                                                                                                                        }
+
 
         else if (in=='C' || in=='c')
-        {
+                                                                                                                                                                                                        {
 
             printf("\nClass Based [C] or Day based[D] ?\n\n");
             scanf(" %c", &in_2);
@@ -532,12 +777,14 @@ int main()
 
             }
 
-        }
+                                                                                                                                                                                                                }
 
 
 
-        printf("\n\n\n\t  \033[4;35m< Session Repeated >\033[0m\n\n\n");
+    printf("\n\n\n\t  \033[2;35m< Session Repeated >\033[0m\n\n\n");
     }
 
-    return 0;
+
+return 0;
 }
+
