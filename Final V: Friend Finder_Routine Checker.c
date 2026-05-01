@@ -3,7 +3,7 @@
 #include <string.h>
 
 const char* TIME_SLOTS[] = {"EMPTY","8.30-10.00 AM","10.10-11.40 AM","11.50-1.20 PM","1.30-3.00 PM","3.10-4.40 PM","4.50-6.20 PM"};
-const char* DAY_SLOTS[] = {"EMPTY","A","S","M","T","W","TR","F"};
+const char* DAY_SLOTS[] = {"EMPTY","A","S","M","T","W","R","F"};
 
 typedef struct
 {
@@ -146,6 +146,23 @@ int main()
 
     };
 
+//Saba Data Input
+    infotable Sabaplan =
+    {
+        .name =  "Sanjida Ara Saba",
+        .id = "2026-2-60-058",
+        .number = "X",
+        .Routine =
+        {
+            [2][3] = 3, [2][6] = 6, //Sun
+            [3][0] = 0, //Mon
+            [4][1] = 1, //Tues
+            [5][6] = 6, // Wed
+            [6][1] = 1,[6][3] = 3, [6][6] = 6  //Thur
+        }
+
+    };
+
 //Prapty Data Input
     infotable Praptyplan =
     {
@@ -271,10 +288,10 @@ int main()
 
             printf("\n");
 
-            infotable* friends[] = {&Ianurplan, &Apurboplan, &Hridiplan, &Nirjaraplan, &Bornaplan, &Praptyplan, &Hridimaplan, &Riditaplan, &Momoplan, &Nittaplan};
-            char* names[] = {"Ianur", "Apurbo", "Hridi", "Nirjara", "Borna", "Prapty", "Hridima", "Tonmoy", "Ridita", "Momo", "Nitta" };
+            infotable* friends[] = {&Ianurplan, &Apurboplan, &Hridiplan, &Nirjaraplan, &Bornaplan, &Praptyplan, &Hridimaplan, &Riditaplan, &Momoplan, &Nittaplan, &Sabaplan};
+            char* names[] = {"Ianur", "Apurbo", "Hridi", "Nirjara", "Borna", "Prapty", "Hridima", "Ridita", "Momo", "Nitta" , "Saba"};
 
-            for(int i=0; i<10; i++)
+            for(int i=0; i<12; i++)
             {
                 int hasClass = 0;
                 for(time=1; time<8; time++) if(friends[i]->Routine[day][time] != 0) hasClass = 1;
@@ -469,6 +486,44 @@ int main()
                     for(time=1; time<8 ; time++)
                     {
                         if (Momoplan.Routine[day][time] == 0) printf("\033[3;32m \033[0m   ");
+                        else  printf("\n\t%s \033[2;31m|\033[0m %s ", DAY_SLOTS[day], TIME_SLOTS[time]);
+                    }
+                    day++;
+                    printf("\n");
+                }
+
+                printf("\n\t\033[1;36mMy Routine\033[0m :\n\t");
+                printf("\033[1;33mA: 8.00 AM-10.00 AM\n\t");
+                printf("S: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
+                printf("M: \033[2;35m--\033[1;33m \n\t");
+                printf("T: 10.10-11.40 AM -> 11.50-1.20 PM - > 1.30-3.30 PM\n\t");
+                printf("W: \033[2;35m--\033[1;33m \n\t");
+                printf("R: 1.30-3.30 PM \033[0m\n\t");
+            }
+
+
+//Saba
+            if (strcmp(subj,"Saba")==0 || strcmp(subj,"SABA")==0 || strcmp(subj,"saba")==0 || strcmp(subj,"sanjida")==0 || strcmp(subj,"Sanjida")==0|| strcmp(subj,"sanji")==0 || strcmp(subj,"Sanji")==0 )
+            {
+
+
+                printf("\t\t\t\033[2;34m\\______________________________________________/\033[0m\n");
+                printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                printf("\t\t\t\tName: %s\n",Sabaplan.name);
+                printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                printf("\t\t\t\tID: %s\n",Sabaplan.id);
+                printf("\t\t\t\033[2;34m|                                              |\033[0m\n");
+                printf("\t\t\t\tNumber: %s\n",Sabaplan.number);
+                printf("\t\t\t\033[2;34m|                                              |\033[0m\n\n");
+                printf("\t\t\t \033[2;34m\\      ______       ________     ______      /\033[0m\n");
+                printf("\n\n\n");
+
+
+                for (day=1 ; day<8 ; )
+                {
+                    for(time=1; time<8 ; time++)
+                    {
+                        if (Sabaplan.Routine[day][time] == 0) printf("\033[3;32m \033[0m   ");
                         else  printf("\n\t%s \033[2;31m|\033[0m %s ", DAY_SLOTS[day], TIME_SLOTS[time]);
                     }
                     day++;
